@@ -1,0 +1,32 @@
+<html>
+
+{% load static %}
+
+<head>
+    <title>CanvasJS Python Charts</title>
+    <script src="{% static 'canvasjs/canvasjs.min.js' %}"></script>
+    <script>
+        window.onload = function () {
+            var chartDataPoints = JSON.parse('{{ data_points|escapejs }}');
+            console.log(chartDataPoints)
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true, // change to false
+                title: {
+                    text: "Python Column Chart"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: chartDataPoints,
+                }],
+            });
+        chart.render();
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="chartContainer" style="width: 100%; height: 360px;"></div>
+</body>
+
+</html>
